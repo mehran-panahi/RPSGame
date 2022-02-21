@@ -2,8 +2,6 @@
 {
     public abstract class Player
     {
-        public Guid Guid { get; private set; } = new Guid();
-
         public Player(string name)
         {
             Name = name;
@@ -23,7 +21,7 @@
             Score++;
         }
 
-        public override string ToString() => $"{Name} : has { Score } Score ";
+        public override string ToString() => $"{Name} chose option {CurrentChoice} and  Score {Score}.";
         
     }
 }

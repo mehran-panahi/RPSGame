@@ -16,7 +16,7 @@ namespace RPSGame.BL
         {
             while (true)
             {
-                Console.WriteLine("Choose between Rock, Paper and Scissors: ");
+                Console.WriteLine($"Choose between Rock, Paper and Scissors ({Name}): ");
                 var userInput = Console.ReadLine();
                 var isValid = Enum.TryParse(userInput, true, out OptionTypes chosenOption);
                 if (!isValid)

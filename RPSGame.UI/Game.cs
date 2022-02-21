@@ -38,7 +38,7 @@ namespace RPSGame.UI
                 if (winnerOption.Contains(player.CurrentChoice))
                 {
                     player.AddScore();
-                    Console.WriteLine($"Winner option was {player.CurrentChoice} and {player} won this round.");
+                    Console.WriteLine($"Winner in this round is {player}");
                 }
 
                 if (player.Score < NUMBER_OF_SCORES_TO_WIN)
@@ -56,9 +56,10 @@ namespace RPSGame.UI
 
         private IEnumerable<Option> GetPlayersOptions()
         {
-            if (_players == null)
+            const int MIN_NUMBER_OF_PLAYERS = 2;
+            if (_players == null || _players.Count < MIN_NUMBER_OF_PLAYERS)
             {
-                throw new NullReferenceException("At Least one player is required!");
+                throw new NullReferenceException("At Least two players are required!");
             }
 
             var options = new List<Option>(_players.Count);
@@ -70,10 +71,12 @@ namespace RPSGame.UI
                     options.Add(player.Guess());
                 }
 
-                if (options.Distinct().Count() > 1)
+                var isSame = options.Distinct().Count() == 1;
+                if (!isSame)
                 {
                     break;
                 }
+                Console.WriteLine("Selected options are same please try agin!");
             }
 
             return options;
